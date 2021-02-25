@@ -2,12 +2,11 @@
 #define SNAKE_GAME_HEADERS_SNAKE_BLOCK_HPP_
 
 #include <SFML/Graphics.hpp>
+#include "values.hpp"
 
 class SnakeBlock
 {
  private:
-  constexpr const static float BLOCK_LENGTH = 15;
-
   sf::Vector2f position_;
   sf::RectangleShape block_;
  public:

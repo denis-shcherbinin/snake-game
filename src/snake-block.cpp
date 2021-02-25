@@ -1,8 +1,10 @@
 #include "snake-block.hpp"
 
+typedef values::Size Size;
+
 SnakeBlock::SnakeBlock(sf::Vector2f startPosition): position_(startPosition)
 {
-  block_.setSize(sf::Vector2f(BLOCK_LENGTH, BLOCK_LENGTH));
+  block_.setSize(sf::Vector2f(Size::SNAKE_BLOCK_SIZE, Size::SNAKE_BLOCK_SIZE));
   block_.setFillColor(sf::Color::Green);
   block_.setPosition(startPosition);
 }
