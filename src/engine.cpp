@@ -1,14 +1,17 @@
 #include "engine.hpp"
 
-#include <iostream>
-
 typedef values::Size Size;
 
-const sf::Time Engine::TIME_PER_FRAME = sf::seconds(1.f / 60.f);
+void Engine::setupText(sf::Text *textItem, const sf::Font &font, const sf::String &value, int size, sf::Color color)
+{
+  textItem->setFont(font);
+  textItem->setString(value);
+  textItem->setCharacterSize(size);
+  textItem->setFillColor(color);
+}
 
 Engine::Engine()
 {
-  // Window
   resolution_ = sf::Vector2f(Size::RESOLUTION_HEIGHT, Size::RESOLUTION_WIDTH);
   window_.create(sf::VideoMode(resolution_.x, resolution_.y), "Snake Game", sf::Style::Default);
   window_.setFramerateLimit(FPS);
@@ -18,12 +21,51 @@ Engine::Engine()
 
   startGame();
 
-  currentGameState_ = GameState::RUNNING;
-  lastGameState_ = currentGameState_;
+  mainFont_.loadFromFile("../assets/fonts/SF-UI-Display-Regular.otf");
+
+  setupText(&titleText_, mainFont_, "Snake Game", 24, sf::Color::Magenta);
+  sf::FloatRect titleTextBounds = titleText_.getGlobalBounds();
+  titleText_.setPosition(sf::Vector2f(resolution_.x / 2 - titleTextBounds.width / 2, -6));
+
+  setupText(&currentLevelText_, mainFont_, "LvL 1", 24, sf::Color::Magenta);
+  currentLevelText_.setPosition(sf::Vector2f(15, -6));
+  sf::FloatRect currentLevelTextBounds = currentLevelText_.getGlobalBounds();
+
+  setupText(&eatenApplesText_, mainFont_, "Apples: 0", 24, sf::Color::Magenta);
+  eatenApplesText_.setPosition(currentLevelTextBounds.left + currentLevelTextBounds.width + 20, -6);
+
+  setupText(&scoreText_, mainFont_, std::to_string(score_), 24, sf::Color::Magenta);
+  sf::FloatRect scoreTextBounds = scoreText_.getGlobalBounds();
+  scoreText_.setPosition(sf::Vector2f(resolution_.x - scoreTextBounds.width - 15, -6));
+
+  setupText(&gameOverText_, mainFont_, "GAME OVER", 72, sf::Color::Yellow);
+  sf::FloatRect gameOverTextBounds = gameOverText_.getLocalBounds();
+  gameOverText_.setPosition(sf::Vector2f(resolution_.x / 2 - gameOverTextBounds.width / 2, 100));
+  gameOverText_.setOutlineColor(sf::Color::Black);
+  gameOverText_.setOutlineThickness(2);
+
+  setupText(&pressEnterText_, mainFont_, "Press \"ENTER\" to try again.", 36, sf::Color::Green);
+  sf::FloatRect pressEnterTextBounds = pressEnterText_.getLocalBounds();
+  pressEnterText_.setPosition(sf::Vector2f(resolution_.x / 2 - pressEnterTextBounds.width / 2, 200));
+  pressEnterText_.setOutlineColor(sf::Color::Black);
+  pressEnterText_.setOutlineThickness(2);
+
+  setupText(&gamePausedText_, mainFont_, "PAUSE", 72, sf::Color::Yellow);
+  sf::FloatRect gamePausedTextBounds = gamePausedText_.getLocalBounds();
+  gamePausedText_.setPosition(sf::Vector2f(resolution_.x / 2 - gamePausedTextBounds.width / 2, 100));
+  gamePausedText_.setOutlineColor(sf::Color::Black);
+  gamePausedText_.setOutlineThickness(2);
+
+  setupText(&pressPauseText_, mainFont_, "Press \"P\" to unpause.", 36, sf::Color::Green);
+  sf::FloatRect pressPauseTextBounds = pressPauseText_.getLocalBounds();
+  pressPauseText_.setPosition(sf::Vector2f(resolution_.x / 2 - pressPauseTextBounds.width / 2, 200));
+  pressPauseText_.setOutlineColor(sf::Color::Black);
+  pressPauseText_.setOutlineThickness(2);
 }
 
 void Engine::startGame()
 {
+  score_ = 0;
   speed_ = 4;
   snakeDirection_ = Direction::RIGHT;
   blocksToAdd_ = 0;
@@ -31,6 +73,11 @@ void Engine::startGame()
   timeSinceLastMove_ = sf::Time::Zero;
 
   directionQueue_.clear();
+  walls_.clear();
+
+  eatenApplesTotal_ = 0;
+  eatenApplesAtLevel_ = 0;
+
   currentLevel_ = 1;
   loadLevel(currentLevel_);
   newSnake();
@@ -38,6 +85,16 @@ void Engine::startGame()
 
   currentGameState_ = GameState::RUNNING;
   lastGameState_ = currentGameState_;
+
+  currentLevelText_.setString("LvL: " + std::to_string(currentLevel_));
+
+  eatenApplesText_.setString("Apples: " + std::to_string(eatenApplesTotal_));
+  sf::FloatRect currentLevelTextBounds = currentLevelText_.getGlobalBounds();
+  eatenApplesText_.setPosition(sf::Vector2f(currentLevelTextBounds.left + currentLevelTextBounds.width + 20, -6));
+
+  scoreText_.setString(std::to_string(score_));
+  sf::FloatRect scoreTextBounds = scoreText_.getLocalBounds();
+  scoreText_.setPosition(sf::Vector2f(resolution_.x - scoreTextBounds.width - 15, -6));
 }
 
 void Engine::pauseGame()
@@ -76,14 +133,14 @@ void Engine::loadLevel(int levelNumber)
   std::string line;
   if (level.is_open())
   {
-    for (int y = 0; y < 30; y++)
+    for (int y = 0; y < static_cast<int>(resolution_.y / Size::WALL); y++)
     {
       getline(level, line);
-      for (int x = 0; x < 40; x++)
+      for (int x = 0; x < static_cast<int>(resolution_.x / Size::WALL); x++)
       {
         if (line[x] == 'w')
         {
-          walls_.emplace_back(Wall(sf::Vector2f(x * 20, y * 20), sf::Vector2f(20, 20)));
+          walls_.emplace_back(Wall(sf::Vector2f(x * Size::WALL, y * Size::WALL), sf::Vector2f(Size::WALL, Size::WALL)));
         }
       }
     }
@@ -111,10 +168,11 @@ void Engine::moveApple()
   int appleSize = Size::APPLE_SIZE;
 
   // Divide the field into blocks the size of apple - remove 2 to exclude the exterior walls
-  sf::Vector2f appleResolution = sf::Vector2f(resolution_.x / appleSize - 2, resolution_.y / appleSize - 2);
+  sf::Vector2f appleResolution = sf::Vector2f(resolution_.x / static_cast<float>(appleSize) - 2,
+                                              resolution_.y / static_cast<float>(appleSize) - 2);
 
   sf::Vector2f newApplePosition;
-  bool badPosition = false;
+  bool badPosition;
   srand(time(nullptr));
 
   // Looking for a valid position
@@ -155,10 +213,28 @@ void Engine::moveApple()
     }
 
     // todo: check if it's on wall
-
   } while (badPosition);
 
   apple_.setPosition(newApplePosition);
+}
+
+void Engine::startNextLevel()
+{
+  ++currentLevel_;
+  walls_.clear();
+  directionQueue_.clear();
+  speed_ = 4 + currentLevel_;
+  snakeDirection_ = Direction::RIGHT;
+  blocksToAdd_ = 0;
+  eatenApplesAtLevel_ = 0;
+
+  loadLevel(currentLevel_);
+  newSnake();
+  moveApple();
+
+  currentLevelText_.setString("LvL: " + std::to_string(currentLevel_));
+  sf::FloatRect currentLevelTextBounds = currentLevelText_.getGlobalBounds();
+  eatenApplesText_.setPosition(sf::Vector2f(currentLevelTextBounds.left + currentLevelTextBounds.width + 20, -5));
 }
 
 void Engine::run()

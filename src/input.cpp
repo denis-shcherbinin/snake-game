@@ -27,6 +27,7 @@ void Engine::input()
           pauseGame();
         }
 
+        // GameOver
         if (currentGameState_ == GameState::GAMEOVER)
         {
           if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))

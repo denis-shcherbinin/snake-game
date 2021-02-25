@@ -18,7 +18,6 @@ class Engine
   sf::Vector2f resolution_;
   sf::RenderWindow window_;
   const unsigned int FPS = 60;
-  static const sf::Time TIME_PER_FRAME;
 
   // Snake
   std::vector<SnakeBlock> snake_;
@@ -27,6 +26,10 @@ class Engine
   int blocksToAdd_;
   int snakeDirection_;
   std::deque<int> directionQueue_;
+
+  int eatenApplesTotal_;
+  int eatenApplesAtLevel_;
+  unsigned long long int score_;
 
   // Apple
   Apple apple_;
@@ -37,6 +40,16 @@ class Engine
   int currentLevel_;
   int maxLevels_;
   std::vector<std::string> levels_;
+
+  sf::Font mainFont_;
+  sf::Text titleText_;
+  sf::Text currentLevelText_;
+  sf::Text eatenApplesText_;
+  sf::Text scoreText_;
+  sf::Text gameOverText_;
+  sf::Text pressEnterText_;
+  sf::Text gamePausedText_;
+  sf::Text pressPauseText_;
 
   sf::Time timeSinceLastMove_;
 
@@ -60,6 +73,8 @@ class Engine
 
   Engine();
 
+  static void setupText(sf::Text *textItem, const sf::Font &font, const sf::String &value, int size, sf::Color color);
+
   void startGame();
   void pauseGame();
 
@@ -75,6 +90,8 @@ class Engine
   void moveApple();
   void checkLevelFiles();
   void loadLevel(int levelNumber);
+
+  void startNextLevel();
 
   void run();
 };

@@ -43,6 +43,13 @@ void Engine::update()
       directionQueue_.pop_front();
     }
 
+    // Updating score
+    score_ = snake_.size() * (eatenApplesTotal_ + 1);
+    scoreText_.setString(std::to_string(score_));
+    sf::FloatRect scoreTextBounds = scoreText_.getGlobalBounds();
+    scoreText_.setPosition(sf::Vector2f(resolution_.x - scoreTextBounds.width - 15, -6));
+
+
     // If we need to grow up the snake
     if (blocksToAdd_ != 0)
     {
@@ -84,12 +91,28 @@ void Engine::update()
     // If snake hits the Apple
     if (snake_.front().getBlock().getGlobalBounds().intersects(apple_.getApple().getGlobalBounds()))
     {
-      // When snake hits the apple we are adding more blocks to the snake, increasing her speed and moving the apple
-      /// todo: inc score, apples counter and etc.
+      ++eatenApplesAtLevel_;
+      ++eatenApplesTotal_;
+      eatenApplesText_.setString("Apples: " + std::to_string(eatenApplesTotal_));
+      sf::FloatRect currentLevelTextBounds = currentLevelText_.getGlobalBounds();
+      eatenApplesText_.setPosition(sf::Vector2f(currentLevelTextBounds.left + currentLevelTextBounds.width + 20, -6));
 
-      blocksToAdd_ += 4;
-      ++speed_;
-      moveApple();
+      bool newLevel = false;
+      if (eatenApplesAtLevel_ >= 10)
+      {
+        if (currentLevel_ < maxLevels_)
+        {
+          newLevel = true;
+          startNextLevel();
+        }
+      }
+
+      if (!newLevel)
+      {
+        blocksToAdd_ += 4;
+        ++speed_;
+        moveApple();
+      }
     }
 
     // If snake hits itself
