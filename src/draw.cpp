@@ -4,6 +4,12 @@ void Engine::draw()
 {
   window_.clear(sf::Color::Black);
 
+  // Draw the walls
+  for (auto &w: walls_)
+  {
+    window_.draw(w.getWall());
+  }
+
   // Draw the apple
   window_.draw(apple_.getApple());
 

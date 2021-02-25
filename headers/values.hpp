@@ -9,6 +9,7 @@ namespace values
     APPLE_SIZE = SNAKE_BLOCK_SIZE,
     RESOLUTION_HEIGHT = 800,
     RESOLUTION_WIDTH = 600,
+    WALL = 20,
   };
 }
 

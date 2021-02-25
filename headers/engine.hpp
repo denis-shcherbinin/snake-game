@@ -3,11 +3,13 @@
 
 #include <vector>
 #include <deque>
+#include <fstream>
 #include <SFML/Graphics.hpp>
 #include <SFML/Graphics/RectangleShape.hpp>
 #include "values.hpp"
 #include "snake-block.hpp"
 #include "apple.hpp"
+#include "wall.hpp"
 
 class Engine
 {
@@ -29,8 +31,17 @@ class Engine
   // Apple
   Apple apple_;
 
+  std::vector<Wall> walls_;
+
+  // Levels
+  int currentLevel_;
+  int maxLevels_;
+  std::vector<std::string> levels_;
+
   sf::Time timeSinceLastMove_;
 
+  int currentGameState_;
+  int lastGameState_;
  public:
   enum Direction
   {
@@ -40,7 +51,17 @@ class Engine
     LEFT,
   };
 
+  enum GameState
+  {
+    RUNNING,
+    PAUSED,
+    GAMEOVER,
+  };
+
   Engine();
+
+  void startGame();
+  void pauseGame();
 
   void input();
   void update();
@@ -52,6 +73,8 @@ class Engine
   void addDirection(int newDirection);
 
   void moveApple();
+  void checkLevelFiles();
+  void loadLevel(int levelNumber);
 
   void run();
 };

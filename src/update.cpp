@@ -92,7 +92,23 @@ void Engine::update()
       moveApple();
     }
 
-    // todo: snake self-collision
+    // If snake hits itself
+    for (int i = 1; i < snake_.size(); ++i)
+    {
+      if (snake_[0].getBlock().getGlobalBounds().intersects(snake_[i].getBlock().getGlobalBounds()))
+      {
+        currentGameState_ = GameState::GAMEOVER;
+      }
+    }
+
+    // If snake hits the walls
+    for (auto &w : walls_)
+    {
+      if (snake_[0].getBlock().getGlobalBounds().intersects(w.getWall().getGlobalBounds()))
+      {
+        currentGameState_ = GameState::GAMEOVER;
+      }
+    }
 
     timeSinceLastMove_ = sf::Time::Zero;
   }

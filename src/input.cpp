@@ -15,10 +15,24 @@ void Engine::input()
       }
       case(sf::Event::KeyPressed):
       {
-        // User wants to quit
+        // Quit
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
         {
           window_.close();
+        }
+
+        // Pause
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
+        {
+          pauseGame();
+        }
+
+        if (currentGameState_ == GameState::GAMEOVER)
+        {
+          if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
+          {
+            startGame();
+          }
         }
         break;
       }
