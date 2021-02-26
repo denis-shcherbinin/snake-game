@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="snake-game"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\cmake-modules\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="C:/CLionProjects/snake-game/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/mingw64/bin/mingw32-make.exe -f &quot;C:/CLionProjects/snake-game/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/mingw64/bin/mingw32-make.exe -f &quot;C:/CLionProjects/snake-game/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/mingw64/bin/mingw32-make.exe -f &quot;C:/CLionProjects/snake-game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/mingw64/bin/mingw32-make.exe -f &quot;C:/CLionProjects/snake-game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="C:/CLionProjects/snake-game/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/mingw64/bin/mingw32-make.exe -f &quot;C:/CLionProjects/snake-game/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/mingw64/bin/mingw32-make.exe -f &quot;C:/CLionProjects/snake-game/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/mingw64/bin/mingw32-make.exe -f &quot;C:/CLionProjects/snake-game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/mingw64/bin/mingw32-make.exe -f &quot;C:/CLionProjects/snake-game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="snake-game">
+				<Option output="C:/CLionProjects/snake-game/cmake-build-debug/snake-game.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/CLionProjects/snake-game/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/CLionProjects/snake-game/headers"/>
+					<Add directory="/usr/include"/>
+					<Add directory="C:/SFML/include"/>
+					<Add directory="C:/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++"/>
+					<Add directory="C:/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward"/>
+					<Add directory="C:/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include"/>
+					<Add directory="C:/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed"/>
+					<Add directory="C:/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/mingw64/bin/mingw32-make.exe -f &quot;C:/CLionProjects/snake-game/cmake-build-debug/Makefile&quot;  VERBOSE=1 snake-game"/>
+					<CompileFile command="C:/mingw64/bin/mingw32-make.exe -f &quot;C:/CLionProjects/snake-game/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/mingw64/bin/mingw32-make.exe -f &quot;C:/CLionProjects/snake-game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/mingw64/bin/mingw32-make.exe -f &quot;C:/CLionProjects/snake-game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="snake-game/fast">
+				<Option output="C:/CLionProjects/snake-game/cmake-build-debug/snake-game.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/CLionProjects/snake-game/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/CLionProjects/snake-game/headers"/>
+					<Add directory="/usr/include"/>
+					<Add directory="C:/SFML/include"/>
+					<Add directory="C:/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++"/>
+					<Add directory="C:/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward"/>
+					<Add directory="C:/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include"/>
+					<Add directory="C:/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed"/>
+					<Add directory="C:/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/7.3.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/mingw64/bin/mingw32-make.exe -f &quot;C:/CLionProjects/snake-game/cmake-build-debug/Makefile&quot;  VERBOSE=1 snake-game/fast"/>
+					<CompileFile command="C:/mingw64/bin/mingw32-make.exe -f &quot;C:/CLionProjects/snake-game/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/mingw64/bin/mingw32-make.exe -f &quot;C:/CLionProjects/snake-game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/mingw64/bin/mingw32-make.exe -f &quot;C:/CLionProjects/snake-game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="C:/CLionProjects/snake-game/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/mingw64/bin/mingw32-make.exe -f &quot;C:/CLionProjects/snake-game/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/mingw64/bin/mingw32-make.exe -f &quot;C:/CLionProjects/snake-game/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/mingw64/bin/mingw32-make.exe -f &quot;C:/CLionProjects/snake-game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/mingw64/bin/mingw32-make.exe -f &quot;C:/CLionProjects/snake-game/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="C:/CLionProjects/snake-game/headers/apple.hpp">
+			<Option target="snake-game"/>
+		</Unit>
+		<Unit filename="C:/CLionProjects/snake-game/headers/engine.hpp">
+			<Option target="snake-game"/>
+		</Unit>
+		<Unit filename="C:/CLionProjects/snake-game/headers/snake-block.hpp">
+			<Option target="snake-game"/>
+		</Unit>
+		<Unit filename="C:/CLionProjects/snake-game/headers/values.hpp">
+			<Option target="snake-game"/>
+		</Unit>
+		<Unit filename="C:/CLionProjects/snake-game/headers/wall.hpp">
+			<Option target="snake-game"/>
+		</Unit>
+		<Unit filename="C:/CLionProjects/snake-game/src/apple.cpp">
+			<Option target="snake-game"/>
+		</Unit>
+		<Unit filename="C:/CLionProjects/snake-game/src/draw.cpp">
+			<Option target="snake-game"/>
+		</Unit>
+		<Unit filename="C:/CLionProjects/snake-game/src/engine.cpp">
+			<Option target="snake-game"/>
+		</Unit>
+		<Unit filename="C:/CLionProjects/snake-game/src/input.cpp">
+			<Option target="snake-game"/>
+		</Unit>
+		<Unit filename="C:/CLionProjects/snake-game/src/main.cpp">
+			<Option target="snake-game"/>
+		</Unit>
+		<Unit filename="C:/CLionProjects/snake-game/src/snake-block.cpp">
+			<Option target="snake-game"/>
+		</Unit>
+		<Unit filename="C:/CLionProjects/snake-game/src/update.cpp">
+			<Option target="snake-game"/>
+		</Unit>
+		<Unit filename="C:/CLionProjects/snake-game/src/wall.cpp">
+			<Option target="snake-game"/>
+		</Unit>
+		<Unit filename="C:/CLionProjects/snake-game/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="C:/CLionProjects/snake-game/cmake-modules/FindSFML.cmake">
+			<Option virtualFolder="CMake Files\cmake-modules\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
