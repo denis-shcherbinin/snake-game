@@ -44,35 +44,7 @@ values.hpp
 SFML/Graphics.hpp
 -
 
-C:/CLionProjects/snake-game/src/apple.cpp
-apple.hpp
-C:/CLionProjects/snake-game/src/apple.hpp
-
-C:/CLionProjects/snake-game/src/draw.cpp
-engine.hpp
-C:/CLionProjects/snake-game/src/engine.hpp
-
 C:/CLionProjects/snake-game/src/engine.cpp
-engine.hpp
-C:/CLionProjects/snake-game/src/engine.hpp
-random
--
-ctime
--
-
-C:/CLionProjects/snake-game/src/input.cpp
-engine.hpp
-C:/CLionProjects/snake-game/src/engine.hpp
-
-C:/CLionProjects/snake-game/src/main.cpp
-engine.hpp
-C:/CLionProjects/snake-game/src/engine.hpp
-
-C:/CLionProjects/snake-game/src/snake-block.cpp
-snake-block.hpp
-C:/CLionProjects/snake-game/src/snake-block.hpp
-
-C:/CLionProjects/snake-game/src/update.cpp
 engine.hpp
 C:/CLionProjects/snake-game/src/engine.hpp
 
