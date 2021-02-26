@@ -112,14 +112,14 @@ void Engine::pauseGame()
 
 void Engine::checkLevelFiles()
 {
-  std::ifstream levelsFile("assets/levels/levels.txt");
+  std::ifstream levelsFile("../assets/levels/levels.txt");
   std::ifstream testFile;
   for (std::string levelsFileLine; getline(levelsFile, levelsFileLine);)
   {
-    testFile.open("assets/levels/" + levelsFileLine);
+    testFile.open("../assets/levels/" + levelsFileLine);
     if (testFile.is_open())
     {
-      levels_.emplace_back("assets/levels/" + levelsFileLine);
+      levels_.emplace_back("../assets/levels/" + levelsFileLine);
       testFile.close();
       ++maxLevels_;
     }

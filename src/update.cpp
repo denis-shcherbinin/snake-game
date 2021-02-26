@@ -98,7 +98,7 @@ void Engine::update()
       eatenApplesText_.setPosition(sf::Vector2f(currentLevelTextBounds.left + currentLevelTextBounds.width + 20, -6));
 
       bool newLevel = false;
-      if (eatenApplesAtLevel_ >= 10)
+      if (eatenApplesAtLevel_ >= 5)
       {
         if (currentLevel_ < maxLevels_)
         {
