@@ -66,7 +66,7 @@ Engine::Engine()
 void Engine::startGame()
 {
   score_ = 0;
-  speed_ = 4;
+  speed_ = 6;
   snakeDirection_ = Direction::RIGHT;
   blocksToAdd_ = 0;
 

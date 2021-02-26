@@ -14,7 +14,7 @@ namespace values
 
   enum Limits
   {
-    APPLES_TO_EAT = 10,
+    APPLES_TO_EAT = 5,
   };
 }
 
