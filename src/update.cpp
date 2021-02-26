@@ -1,6 +1,7 @@
 #include "engine.hpp"
 
 typedef values::Size Size;
+typedef values::Limits Limits;
 
 void Engine::update()
 {
@@ -45,7 +46,7 @@ void Engine::update()
 
     // Updating score
     score_ = snake_.size() * (eatenApplesTotal_ + 1);
-    scoreText_.setString(std::to_string(score_));
+    scoreText_.setString("Score: " + std::to_string(score_));
     sf::FloatRect scoreTextBounds = scoreText_.getGlobalBounds();
     scoreText_.setPosition(sf::Vector2f(resolution_.x - scoreTextBounds.width - 15, -6));
 
@@ -98,7 +99,7 @@ void Engine::update()
       eatenApplesText_.setPosition(sf::Vector2f(currentLevelTextBounds.left + currentLevelTextBounds.width + 20, -6));
 
       bool newLevel = false;
-      if (eatenApplesAtLevel_ >= 5)
+      if (eatenApplesAtLevel_ >= Limits::APPLES_TO_EAT)
       {
         if (currentLevel_ < maxLevels_)
         {

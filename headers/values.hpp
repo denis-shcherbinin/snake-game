@@ -11,6 +11,11 @@ namespace values
     RESOLUTION_WIDTH = 600,
     WALL = 20,
   };
+
+  enum Limits
+  {
+    APPLES_TO_EAT = 5,
+  };
 }
 
 #endif //SNAKE_GAME_HEADERS_VALUES_HPP_

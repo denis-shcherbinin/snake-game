@@ -34,7 +34,7 @@ Engine::Engine()
   setupText(&eatenApplesText_, mainFont_, "Apples: 0", 24, sf::Color::Magenta);
   eatenApplesText_.setPosition(currentLevelTextBounds.left + currentLevelTextBounds.width + 20, -6);
 
-  setupText(&scoreText_, mainFont_, std::to_string(score_), 24, sf::Color::Magenta);
+  setupText(&scoreText_, mainFont_, "Score:" + std::to_string(score_), 24, sf::Color::Magenta);
   sf::FloatRect scoreTextBounds = scoreText_.getGlobalBounds();
   scoreText_.setPosition(sf::Vector2f(resolution_.x - scoreTextBounds.width - 15, -6));
 
@@ -92,7 +92,7 @@ void Engine::startGame()
   sf::FloatRect currentLevelTextBounds = currentLevelText_.getGlobalBounds();
   eatenApplesText_.setPosition(sf::Vector2f(currentLevelTextBounds.left + currentLevelTextBounds.width + 20, -6));
 
-  scoreText_.setString(std::to_string(score_));
+  scoreText_.setString("Score: " + std::to_string(score_));
   sf::FloatRect scoreTextBounds = scoreText_.getLocalBounds();
   scoreText_.setPosition(sf::Vector2f(resolution_.x - scoreTextBounds.width - 15, -6));
 }
@@ -212,7 +212,6 @@ void Engine::moveApple()
       }
     }
 
-    // todo: check if it's on wall
   } while (badPosition);
 
   apple_.setPosition(newApplePosition);
